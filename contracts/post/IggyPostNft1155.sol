@@ -5,6 +5,11 @@ import { OwnableWithManagers } from "../access/OwnableWithManagers.sol";
 import { ERC1155 } from "@openzeppelin/contracts/token/ERC1155/ERC1155.sol";
 import { ReentrancyGuard } from "@openzeppelin/contracts/security/ReentrancyGuard.sol";
 
+interface IBlast {
+  function configureClaimableGas() external;
+  function configureGovernor(address _governor) external;
+}
+
 interface IIggyPostNftMetadata {
   function getMetadata(
     uint256 _tokenId, 
@@ -56,10 +61,15 @@ contract IggyPostNft1155 is ERC1155, OwnableWithManagers, ReentrancyGuard {
   // constructor
   constructor(
     uint256 _defaultPrice,
+    address _blast,
+    address _gov,
     address _metadataAddress,
     string memory _name,
     string memory _symbol
   ) ERC1155("") {
+    IBlast(_blast).configureClaimableGas();
+    IBlast(_blast).configureGovernor(_gov);
+    
     defaultPrice = _defaultPrice;
     metadataAddress = _metadataAddress;
     name = _name;

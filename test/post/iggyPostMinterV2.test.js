@@ -57,7 +57,13 @@ describe("IggyPostMinterV2", function () {
   //const provider = waffle.provider;
 
   beforeEach(async function () {
-    [owner, dao, author, user1, user2, dev, devFeeUpdaterAddress, referrer] = await ethers.getSigners();
+    [owner, dao, author, user1, user2, dev, devFeeUpdaterAddress, referrer, feeReceiver] = await ethers.getSigners();
+
+    const MockBlast = await ethers.getContractFactory("MockBlast");
+    const blastContract = await MockBlast.deploy();
+
+    const BlastGovernor = await ethers.getContractFactory("BlastGovernor");
+    const blastGovernorContract = await BlastGovernor.deploy(blastContract.address, feeReceiver.address);
 
     const MockPunkTld = await ethers.getContractFactory("MockPunkTld");
     mockPunkTldContract = await MockPunkTld.deploy(referrer.address, "referrer");
@@ -68,7 +74,15 @@ describe("IggyPostMinterV2", function () {
     await metadataContract.deployed();
 
     const IggyPost = await ethers.getContractFactory("IggyPostNft1155");
-    iggyPostContract = await IggyPost.deploy(defaultPrice, metadataContract.address, mdName, symbol);
+    iggyPostContract = await IggyPost.deploy(
+      defaultPrice, 
+      blastContract.address,
+      blastGovernorContract.address,
+      metadataContract.address, 
+      mdName, 
+      symbol
+    );
+
     await iggyPostContract.deployed();
 
     // deploy ChatToken

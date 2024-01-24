@@ -5,6 +5,11 @@ import { OwnableWithManagers } from "../access/OwnableWithManagers.sol";
 import { ReentrancyGuard } from "@openzeppelin/contracts/security/ReentrancyGuard.sol";
 import { IERC20 } from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 
+interface IBlast {
+  function configureClaimableGas() external;
+  function configureGovernor(address _governor) external;
+}
+
 interface IIggyPostNft {
 
   function getPostPrice (string memory _postId, address _author) external view returns (uint256);
@@ -50,13 +55,18 @@ contract IggyPostMinter is OwnableWithManagers, ReentrancyGuard {
 
   // CONSTRUCTOR
   constructor(
+    address _blast,
     address _daoAddress,
     address _devAddress,
+    address _gov,
     address _postAddress,
     uint256 _daoFee,
     uint256 _devFee,
     uint256 _referrerFee
   ) {
+    IBlast(_blast).configureClaimableGas();
+    IBlast(_blast).configureGovernor(_gov);
+
     daoAddress = _daoAddress;
     devAddress = _devAddress;
     devFeeUpdaterAddress = _devAddress;

@@ -4,6 +4,11 @@ pragma solidity ^0.8.17;
 import { OwnableWithManagers } from "../access/OwnableWithManagers.sol";
 import { IERC20 } from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 
+interface IBlast {
+  function configureClaimableGas() external;
+  function configureGovernor(address _governor) external;
+}
+
 /// @title Iggy post stats contract
 /// @author Tempe Techie
 /// @notice Contract that keeps track of who minted which Iggy Post IDs
@@ -20,7 +25,14 @@ contract IggyPostStats is OwnableWithManagers {
   event MinterAddressChanged(address indexed user, address minterAddress);
 
   // constructor
-  constructor(address _minterAddress) {
+  constructor(
+    address _blast,
+    address _gov,
+    address _minterAddress
+  ) {
+    IBlast(_blast).configureClaimableGas();
+    IBlast(_blast).configureGovernor(_gov);
+
     minterAddress = _minterAddress;
   }
 

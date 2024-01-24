@@ -35,7 +35,13 @@ describe("ChatTokenClaimActivityPoints", function () {
   const user2mintedWei = ethers.utils.parseEther("4.2069");
 
   beforeEach(async function () {
-    [owner, user1, user2, user3] = await ethers.getSigners();
+    [owner, user1, user2, user3, feeReceiver] = await ethers.getSigners();
+
+    const MockBlast = await ethers.getContractFactory("MockBlast");
+    const blastContract = await MockBlast.deploy();
+
+    const BlastGovernor = await ethers.getContractFactory("BlastGovernor");
+    const blastGovernorContract = await BlastGovernor.deploy(blastContract.address, feeReceiver.address);
 
     // deploy ChatToken
     const ChatToken = await ethers.getContractFactory("ChatToken");
@@ -52,7 +58,11 @@ describe("ChatTokenClaimActivityPoints", function () {
 
     // deploy IggyPostStats
     const IggyPostStats = await ethers.getContractFactory("IggyPostStats");
-    iggyPostStatsContract = await IggyPostStats.deploy(owner.address); // set owner as minter
+    iggyPostStatsContract = await IggyPostStats.deploy(
+      blastContract.address, // Blast address
+      blastGovernorContract.address, // BlastGovernor address
+      owner.address // set owner as minter
+    ); 
     await iggyPostStatsContract.deployed();
 
     // deploy ActivityPoints

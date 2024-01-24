@@ -1,8 +1,10 @@
 // 4. Deploy stats contract
-// npx hardhat run scripts/post/IggyPostNft1155/4_stats.deploy.js --network taikoJolnir
+// npx hardhat run scripts/post/IggyPostNft1155/4_stats.deploy.js --network blastSepolia
 
 const contractName = "IggyPostStats";
 
+const blastAddress = "0x4300000000000000000000000000000000000002";
+const blastGovernor = "0xC6c17896fa051083324f2aD0Ed4555dC46D96E7f";
 const minterAddress = "0x5e54CebB2612744cB56547bC7CC41466ad7ac557";
 const shouldStatsBeEnabled = true;
 
@@ -20,7 +22,7 @@ async function main() {
 
   // deploy contract
   const contract = await ethers.getContractFactory(contractName);
-  const instance = await contract.deploy(minterAddress);
+  const instance = await contract.deploy(blastAddress, blastGovernor, minterAddress);
 
   await instance.deployed();
 
@@ -49,7 +51,7 @@ async function main() {
   console.log("Done!");
 
   console.log("Wait a minute and then run this command to verify contracts on block explorer:");
-  console.log("npx hardhat verify --network " + network.name + " " + instance.address + ' ' + minterAddress);
+  console.log("npx hardhat verify --network " + network.name + " " + instance.address + " " + blastAddress + " " + blastGovernor + " " + minterAddress);
 }
 
 main()

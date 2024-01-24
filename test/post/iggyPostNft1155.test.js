@@ -52,7 +52,13 @@ describe("IggyPostNft1155", function () {
   //const provider = waffle.provider;
 
   beforeEach(async function () {
-    [owner, dao, author, user1, user2, dev, referrer] = await ethers.getSigners();
+    [owner, dao, author, user1, user2, dev, referrer, feeReceiver] = await ethers.getSigners();
+
+    const MockBlast = await ethers.getContractFactory("MockBlast");
+    const blastContract = await MockBlast.deploy();
+
+    const BlastGovernor = await ethers.getContractFactory("BlastGovernor");
+    const blastGovernorContract = await BlastGovernor.deploy(blastContract.address, feeReceiver.address);
 
     const MockPunkTld = await ethers.getContractFactory("MockPunkTld");
     mockPunkTldContract = await MockPunkTld.deploy(referrer.address, "referrer");
@@ -63,11 +69,29 @@ describe("IggyPostNft1155", function () {
     await metadataContract.deployed();
 
     const IggyPost = await ethers.getContractFactory("IggyPostNft1155");
-    iggyPostContract = await IggyPost.deploy(defaultPrice, metadataContract.address, mdName, symbol);
+    iggyPostContract = await IggyPost.deploy(
+      defaultPrice, 
+      blastContract.address,
+      blastGovernorContract.address,
+      metadataContract.address, 
+      mdName, 
+      symbol
+    );
+
     await iggyPostContract.deployed();
 
     const IggyMinter = await ethers.getContractFactory("IggyPostMinter");
-    minterContract = await IggyMinter.deploy(dao.address, dev.address, iggyPostContract.address, daoFee, devFee, referrerFee);
+    minterContract = await IggyMinter.deploy(
+      blastContract.address,
+      dao.address, 
+      dev.address, 
+      blastGovernorContract.address,
+      iggyPostContract.address, 
+      daoFee, 
+      devFee, 
+      referrerFee
+    );
+
     await minterContract.deployed();
 
     await iggyPostContract.ownerChangeMinterAddress(minterContract.address);
