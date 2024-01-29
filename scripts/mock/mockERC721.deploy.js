@@ -1,4 +1,4 @@
-// npx hardhat run scripts/mock/mockERC721.deploy.js --network polygonMumbai
+// npx hardhat run scripts/mock/mockERC721.deploy.js --network blastSepolia
 
 const contractName = "MockErc721WithMinter";
 

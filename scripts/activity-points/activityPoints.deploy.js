@@ -1,10 +1,10 @@
-// npx hardhat run scripts/activity-points/activityPoints.deploy.js --network arbitrumNova
+// npx hardhat run scripts/activity-points/activityPoints.deploy.js --network blastSepolia
 
 const contractName = "ActivityPoints";
 
-const statsAddress = "0xabf9960132818049340253C3Ca0551F92Db856d7"; // stats contract
-const mintedPostsStatsAddress = "0xF40284a811c82b4B9ab22E94Bb909Df6d2c66C08";
-const tldStatsAddress = ethers.constants.AddressZero;
+const statsAddress = ""; // stats contract
+const mintedPostsStatsAddress = "";
+const tldStatsAddress = "";
 const multiplier = 100000; // 1 wei = 100 points
 
 async function main() {

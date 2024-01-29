@@ -1,4 +1,4 @@
-// npx hardhat run scripts/launchpad/erc721/other/calls.js --network zkfair
+// npx hardhat run scripts/launchpad/erc721/other/calls.js --network blastSepolia
 
 const contractName = "IggyLaunchpad721Bonding";
 

@@ -1,5 +1,5 @@
 // 2. Deploy StatsMiddleware contract.
-// npx hardhat run scripts/stats/2_statsMiddleware.deploy.js --network arbitrumNova
+// npx hardhat run scripts/stats/2_statsMiddleware.deploy.js --network blastSepolia
 
 const contractName = "StatsMiddleware";
 

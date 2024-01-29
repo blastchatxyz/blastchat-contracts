@@ -1,5 +1,5 @@
 // Deploy NftMetadata contract for multiple onchain images
-// npx hardhat run scripts/launchpad/erc721/other/NftMetadataOnchainMultipleImages.deploy.js --network flare
+// npx hardhat run scripts/launchpad/erc721/other/NftMetadataOnchainMultipleImages.deploy.js --network blastSepolia
 
 const contractName = "NftMetadataOnchainMultipleImages";
 

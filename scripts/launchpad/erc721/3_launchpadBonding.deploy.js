@@ -1,5 +1,5 @@
 // 3. Deploy IggyLaunchpad721Bonding contract.
-// npx hardhat run scripts/launchpad/erc721/3_launchpadBonding.deploy.js --network arbitrumNova
+// npx hardhat run scripts/launchpad/erc721/3_launchpadBonding.deploy.js --network blastSepolia
 
 const contractName = "IggyLaunchpad721Bonding";
 

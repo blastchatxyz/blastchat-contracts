@@ -1,4 +1,4 @@
-// npx hardhat run scripts/activity-points/calls.js --network zkfair
+// npx hardhat run scripts/activity-points/calls.js --network blastSepolia
 
 const contractName = "ActivityPoints";
 

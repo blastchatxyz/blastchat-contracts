@@ -1,4 +1,4 @@
-// npx hardhat run scripts/nft/early-stakers/onlyMetadata.deploy.js --network polygonMumbai
+// npx hardhat run scripts/nft/early-stakers/onlyMetadata.deploy.js --network blastSepolia
 
 const contractName = "EarlyStakerMetadata";
 

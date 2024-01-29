@@ -1,4 +1,4 @@
-// npx hardhat run scripts/nft/early-stakers/earlyStakerNft.deploy.js --network songbird
+// npx hardhat run scripts/nft/early-stakers/earlyStakerNft.deploy.js --network blastSepolia
 
 const data = require("./claimers.json");
 const { StandardMerkleTree } = require("@openzeppelin/merkle-tree");
