@@ -75,7 +75,7 @@ module.exports = {
       chainId: 168587773,
       accounts: [process.env.DEPLOYER_PRIVATE_KEY],
       gas: "auto", // gas limit
-      gasPrice: 1000000000, // 1 gwei
+      gasPrice: 2000000000, // 1 gwei
     },
     bsc: { // BNB Smart Chain mainnet
       url: 'https://bscrpc.com',
