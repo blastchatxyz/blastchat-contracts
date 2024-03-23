@@ -1,5 +1,5 @@
 // Add NFTs from the old launchpad to the new one
-// npx hardhat run scripts/launchpad/erc721/other/addOldNftsToNewLaunchpad.js --network blastSepolia
+// npx hardhat run scripts/launchpad/erc721/other/addOldNftsToNewLaunchpad.js --network blast
 
 const launchpadContractName = "IggyLaunchpad721Bonding";
 const newLaunchpadAddress = "";

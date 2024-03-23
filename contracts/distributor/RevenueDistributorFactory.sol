@@ -15,6 +15,12 @@ contract RevenueDistributorFactory {
   // EVENTS
   event RevenueDistributorLaunch(address indexed contractOwner_, string uniqueId_, address indexed contractAddress_);
 
+  // CONSTRUCTOR
+  constructor(address gov_) {
+    IBlast(0x4300000000000000000000000000000000000002).configureClaimableGas();
+    IBlast(0x4300000000000000000000000000000000000002).configureGovernor(gov_);
+  }
+
   // READ
 
   function getDistributorAddressById(string memory uniqueId_) external view returns(address) {

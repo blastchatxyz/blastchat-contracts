@@ -1,5 +1,5 @@
 // 3. Deploy minter contract
-// npx hardhat run scripts/post/IggyPostNft1155/3_minter.deploy.js --network blastSepolia
+// npx hardhat run scripts/post/IggyPostNft1155/3_minter.deploy.js --network blast
 
 const contractName = "IggyPostMinter";
 

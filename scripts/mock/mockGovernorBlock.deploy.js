@@ -1,4 +1,4 @@
-// npx hardhat run scripts/mock/mockGovernorBlock.deploy.js --network blastSepolia
+// npx hardhat run scripts/mock/mockGovernorBlock.deploy.js --network blast
 
 const contractName = "MockGovernorBlock";
 

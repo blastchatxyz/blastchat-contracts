@@ -1,4 +1,4 @@
-// npx hardhat run scripts/other/manager/addManager.js --network blastSepolia
+// npx hardhat run scripts/other/manager/addManager.js --network blast
 
 const managerAddress = "";
 

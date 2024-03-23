@@ -1,5 +1,5 @@
 // 1. Deploy metadata contract
-// npx hardhat run scripts/post/IggyPostNft1155/1_metadataStaticColor.deploy.js --network blastSepolia
+// npx hardhat run scripts/post/IggyPostNft1155/1_metadataStaticColor.deploy.js --network blast
 
 const contractName = "IggyPostMetadataStaticColor";
 

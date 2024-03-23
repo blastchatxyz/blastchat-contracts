@@ -1,11 +1,11 @@
-// npx hardhat run scripts/activity-points/activityPointsAlt.deploy.js --network blastSepolia
+// npx hardhat run scripts/activity-points/activityPointsAlt.deploy.js --network blast
 
 const contractName = "ActivityPointsAlt";
 
 const statsAddress = ""; // stats contract
 const mintedPostsStatsAddress = "";
 const tldAddress = "";
-const multiplier = 100000; // 1 wei = 1000 points
+const multiplier = 1_000_000; // 1 eth = 1M points
 
 async function main() {
   const [deployer] = await ethers.getSigners();

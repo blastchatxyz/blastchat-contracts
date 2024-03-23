@@ -1,5 +1,5 @@
 // 1. Deploy FriendKeys contract and automatically add it's address to the Stats middleware contract.
-// npx hardhat run scripts/keys/1_friendKeys.deploy.js --network blastSepolia
+// npx hardhat run scripts/keys/1_friendKeys.deploy.js --network blast
 
 const contractName = "FriendKeys";
 

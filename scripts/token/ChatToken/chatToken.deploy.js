@@ -1,4 +1,4 @@
-// npx hardhat run scripts/token/ChatToken/chatToken.deploy.js --network blastSepolia
+// npx hardhat run scripts/token/ChatToken/chatToken.deploy.js --network blast
 
 const contractName = "ChatToken";
 

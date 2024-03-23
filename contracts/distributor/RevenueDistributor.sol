@@ -5,14 +5,21 @@ import { OwnableWithManagers } from "../access/OwnableWithManagers.sol";
 import { ReentrancyGuard } from "@openzeppelin/contracts/security/ReentrancyGuard.sol";
 import { IERC721 } from "@openzeppelin/contracts/token/ERC721/IERC721.sol";
 
+interface IBlast {
+  function configureClaimableGas() external;
+  function claimMaxGas(address contractAddress, address recipient) external returns (uint256);
+  function configureGovernor(address _governor) external;
+}
+
 interface IERC20 {
   function transfer(address to, uint256 amount) external returns (bool);
 }
 
-/// @title RevenueDistributor
+/// @title RevenueDistributor (adapted for Blast)
 /// @author Tempe Techie
 /// @notice Automatically distribute revenue to multiple recipients
 contract RevenueDistributor is OwnableWithManagers, ReentrancyGuard {
+  address public gasRecipient; // 0x0 by default, which means the contract owner will receive the claimable gas
   string public constant NAME = "RevenueDistributor";
   uint256 private constant LABEL_MAX_LENGTH = 30;
 
@@ -31,7 +38,25 @@ contract RevenueDistributor is OwnableWithManagers, ReentrancyGuard {
   event RecipientUpdate(address indexed updater_, address indexed recipient_, address newAddr_, string label_, uint256 percentage_);
   event WithdrawEth(address indexed owner_, uint256 amount_);
 
+  // CONSTRUCTOR
+  constructor() {
+    IBlast(0x4300000000000000000000000000000000000002).configureClaimableGas();
+  }
+
   // READ
+
+  /// @notice Claim the maximum gas allowance for the contract.
+  function claimContractMaxGas() external {
+    address recipient_;
+
+    if (gasRecipient == address(0)) {
+      recipient_ = owner();
+    } else {
+      recipient_ = gasRecipient;
+    }
+
+    IBlast(0x4300000000000000000000000000000000000002).claimMaxGas(address(this), recipient_);
+  }
 
   function getRecipient(address recipient_) external view returns (Recipient memory) {
     uint256 length = recipients.length;
@@ -201,6 +226,11 @@ contract RevenueDistributor is OwnableWithManagers, ReentrancyGuard {
   /// @notice Recover any ERC-721 token mistakenly sent to this contract address
   function recoverERC721(address tokenAddress_, uint256 tokenId_, address recipient_) external onlyOwner {
     IERC721(tokenAddress_).transferFrom(address(this), recipient_, tokenId_);
+  }
+
+  /// @notice Set the address that will receive the gas allowance. If set to 0x0, the contract owner will receive the gas allowance.
+  function setGasRecipient(address gasRecipient_) external onlyOwner {
+    gasRecipient = gasRecipient_;
   }
 
   /// @dev Manual withdrawal in case there's an excess of ETH in the contract

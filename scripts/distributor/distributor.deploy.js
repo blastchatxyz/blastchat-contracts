@@ -1,4 +1,4 @@
-// npx hardhat run scripts/distributor/distributor.deploy.js --network blastSepolia
+// npx hardhat run scripts/distributor/distributor.deploy.js --network blast
 
 const contractName = "RevenueDistributor";
 

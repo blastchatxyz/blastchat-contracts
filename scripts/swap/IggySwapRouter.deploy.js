@@ -1,9 +1,9 @@
-// npx hardhat run scripts/swap/IggySwapRouter.deploy.js --network blastSepolia
+// npx hardhat run scripts/swap/IggySwapRouter.deploy.js --network blast
 
 const contractName = "IggySwapRouter";
 
 const blastAddress = "0x4300000000000000000000000000000000000002";
-const blastGovernor = "0xC6c17896fa051083324f2aD0Ed4555dC46D96E7f";
+const blastGovernor = "0xA33dCbE04278706248891931537Dd56B795c3663";
 const iggyAddress = "0x6771F33Cfd8C6FC0A1766331f715f5d2E1d4E0e2"; // mandatory
 const routerAddress = ""; // mandatory
 const frontendAddress = ethers.constants.AddressZero; // optional

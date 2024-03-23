@@ -1,5 +1,5 @@
 // 4. Deploy stats contract
-// npx hardhat run scripts/post/IggyPostNft1155/4_stats.deploy.js --network blastSepolia
+// npx hardhat run scripts/post/IggyPostNft1155/4_stats.deploy.js --network blast
 
 const contractName = "IggyPostStats";
 

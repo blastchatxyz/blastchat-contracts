@@ -1,5 +1,5 @@
 // script to select 10 random winners from a list of NFT holders and creators
-// npx hardhat run scripts/launchpad/erc721/other/nftRaffle.js --network blastSepolia
+// npx hardhat run scripts/launchpad/erc721/other/nftRaffle.js --network blast
 
 const { ethers } = require("hardhat");
 

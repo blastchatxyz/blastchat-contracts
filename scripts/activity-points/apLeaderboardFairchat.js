@@ -1,4 +1,4 @@
-// npx hardhat run scripts/activity-points/apLeaderboardFairchat.js --network blastSepolia
+// npx hardhat run scripts/activity-points/apLeaderboardFairchat.js --network blast
 
 const contractName = "ActivityPoints";
 

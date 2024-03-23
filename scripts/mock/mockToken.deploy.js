@@ -1,4 +1,4 @@
-// npx hardhat run scripts/mock/mockToken.deploy.js --network blastSepolia
+// npx hardhat run scripts/mock/mockToken.deploy.js --network blast
 
 const contractName = "MockErc20TokenDecimals";
 

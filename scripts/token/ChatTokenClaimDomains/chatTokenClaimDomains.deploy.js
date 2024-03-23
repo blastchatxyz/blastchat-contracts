@@ -1,4 +1,4 @@
-// npx hardhat run scripts/token/ChatTokenClaimDomains/chatTokenClaimDomains.deploy.js --network blastSepolia
+// npx hardhat run scripts/token/ChatTokenClaimDomains/chatTokenClaimDomains.deploy.js --network blast
 // This script deploys the ChatTokenClaimDomains contract and sets it as a minter in the ChatTokenMinter contract.
 // If setting the minter address fails, do it manually by calling the addMinter function in the ChatTokenMinter contract.
 

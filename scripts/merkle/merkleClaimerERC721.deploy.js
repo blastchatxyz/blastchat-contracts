@@ -1,4 +1,4 @@
-// npx hardhat run scripts/merkle/merkleClaimerERC721.deploy.js --network blastSepolia
+// npx hardhat run scripts/merkle/merkleClaimerERC721.deploy.js --network blast
 
 const data = require("./claimers.json");
 const { StandardMerkleTree } = require("@openzeppelin/merkle-tree");
